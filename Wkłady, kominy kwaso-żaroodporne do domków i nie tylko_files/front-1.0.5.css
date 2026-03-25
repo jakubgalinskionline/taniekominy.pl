@@ -1,0 +1,380 @@
+/**
+* 2014-2024 Presta-Mod.pl Rafał Zontek
+*
+* NOTICE OF LICENSE
+*
+* Poniższy kod jest kodem płatnym, rozpowszechanie bez pisemnej zgody autora zabronione
+* Moduł można zakupić na stronie Presta-Mod.pl. Modyfikacja kodu jest zabroniona,
+* wszelkie modyfikacje powodują utratę gwarancji
+*
+* http://presta-mod.pl
+*
+* DISCLAIMER
+*
+*
+*  @author    Presta-Mod.pl Rafał Zontek <biuro@presta-mod.pl>
+*  @copyright 2014-2024 Presta-Mod.pl
+*  @license   Licecnja na jedną domenę
+*  Presta-Mod.pl Rafał Zontek
+*/
+#pmcookie p {font-size: 13px;}
+
+#pmcookie form {margin: 15px;}
+
+#pmcookie hr {
+margin-top: 0.7rem;
+margin-bottom: 1.0rem;
+}
+
+#pmcookie .pmcookie-h4,
+#pmcookie .pmcookie-h1,
+#pmcookie .pmcookie-h2 {
+font-weight: 600;
+margin-bottom: 15px;
+}
+
+#pmcookie .pmcookie-h4 {
+font-size: 14px;
+line-height: 16px;
+}
+
+#pmcookie .pmcookie-h1 {
+font-size: 20px;
+line-height: 22px;
+}
+
+#pmcookie .pmcookie-h2 {
+font-size: 16px;
+line-height: 18px;
+}
+
+#pmcookie .pm-switch .checker {
+display: none;
+}
+
+#pmcookie .pm-switch {
+position: relative;
+display: inline-block;
+width: 45px;
+height: 24px;
+margin-bottom: 0;
+}
+
+#pmcookie .pm-switch input {
+opacity: 1;
+width: 0;
+height: 0;
+}
+
+#pmcookie .pm-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+}
+
+#pmcookie .pm-slider:before {
+background-color: white;
+bottom: 4px;
+content: "";
+height: 16px;
+left: 4px;
+position: absolute;
+transition: .4s;
+width: 16px;
+}
+
+#pmcookie .pm-slider.checked:before {
+transform: translateX(20px);
+}
+
+#pmcookie .pm-slider.checked-half:before {
+transform: translateX(10px);
+}
+
+#pmcookie .pm-slider {
+border-radius: 34px;
+}
+
+#pmcookie .pm-slider:before {
+border-radius: 50%;
+}
+
+#pmcookie table.pm-table-vertical-middle td {
+padding: 0.40rem;
+}
+
+#pmcookie table.pm-table-vertical-middle {
+border: 1px solid #ddd;
+border-collapse: unset;
+}
+
+#pmcookie .pm-table-vertical-middle tr,
+#pmcookie .pm-table-vertical-middle tr td {
+vertical-align: middle;
+}
+
+#pmcookie div.pmcookie-features-details {
+float: left;
+padding: 0 15px 10px 15px;
+text-align: left;
+width: 90%;
+}
+
+#pmcookie div.pmcookie-switch {
+float: left;
+text-align: center;
+vertical-align: middle;
+width: 10%;
+}
+
+@media (max-width: 768px) {
+#pmcookie div.pmcookie-features-details {
+width: 80%;
+}
+#pmcookie div.pmcookie-switch {
+width: 20%;
+}
+}
+
+#pmcookie td.pmcookie-switch {
+text-align: center;
+}
+
+#pmcookie .pmcookie-row-gray {
+background: #efefef;
+border: 1px solid #ddd;
+}
+
+#pmcookie .pm-switch-toogle {
+cursor: pointer;
+}
+
+#pmcookie .pm-table-vertical-middle .pm-dot {
+border-radius: 50%;
+display: inline-block;
+height: 16px;
+width: 16px;
+}
+
+#pmcookie .pm-switch-toogle p {
+margin: 0;
+}
+
+#pmcookie .pmjconfirm-buttons {
+text-align: right;
+}
+
+#pmcookie .pm-disabled {
+filter: grayscale(100%);
+opacity: 0.5;
+}
+
+#pmcookie .pm-check-all-color {
+margin-bottom: 10px;
+}
+
+#pmcookie .page-content.page-cookie {
+background: #fff;
+padding: 1.25rem;
+text-align: justify;
+}
+
+#pmcookie .pmcookie-hidden {
+display: none;
+}
+
+#pmcookie .pmcookie-group-description {
+padding: 10px 0 0 10px;
+}
+
+#pmcookie .pmcookie-features {
+margin: 0;
+padding: 0;
+}
+
+#pmcookie .pmcookie-features > dl.data-sheet {
+align-items: stretch;
+display: flex;
+flex-wrap: wrap;
+margin-bottom: 0;
+}
+
+#pmcookie .pmcookie-features > dl.data-sheet dd.value,
+#pmcookie .pmcookie-features > dl.data-sheet dt.name {
+background: #f6f6f6;
+flex: 1 0 40%;
+font-size: 12px;
+font-weight: 400;
+margin-bottom: 0.3rem;
+margin-right: 0.3rem;
+min-height: 2rem;
+padding: 0.4rem;
+word-break: normal;
+}
+
+#pmcookie .pmcookie-features > dl.data-sheet dd.value:nth-of-type(even),
+#pmcookie .pmcookie-features > dl.data-sheet dt.name:nth-of-type(even) {
+background: #f6f6f6;
+}
+
+#pmcookie span.pmcookie-group-name {
+align-items: center;
+border-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+border: 0;
+display: flex;
+font-size: 1rem!important;
+padding: .25rem;
+position: relative;
+text-align: left;
+text-transform: uppercase;
+transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,border-radius .15s ease;
+width: 100%;
+}
+
+#pmcookie span.pmcookie-group-name:not(.collapsed)::before {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23666'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+transform: rotate(-180deg);
+color: #666;
+}
+
+#pmcookie span.pmcookie-group-name::before {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23666'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+background-repeat: no-repeat;
+background-size: 1.25rem;
+content: "";
+flex-shrink: 0;
+height: 1.25rem;
+margin-left: 0;
+margin-right: 10px;
+transition: transform .2s ease-in-out;
+width: 1.25rem;
+}
+
+#pmcookie .pmcookie-group-name {
+cursor: pointer;
+}
+
+.jconfirm-buttons .btn {font-weight: 500!important}
+
+.jconfirm-buttons {
+	padding: 10px 14px;
+	width: 100%;
+}
+
+.pmcookie-button.jconfirm-buttons {
+	padding: 10px 0;
+}
+
+.jconfirm-buttons .pm-select-all {
+float: right;
+padding: 6px 12px;
+}
+
+.jconfirm-buttons .pm-submit-color,
+.jconfirm-buttons .pm-submit-required-color {float: right;}
+
+.jconfirm-buttons .pm-submit-selected {float: left;}
+
+@media (max-width: 768px) {
+
+.jconfirm-buttons .pm-submit-color {float: right;}
+.jconfirm-buttons .pm-submit-selected {
+float: right;
+margin-bottom: 15px!important;
+}
+.jconfirm-buttons .pmcookie-show-all {
+float: right;
+margin-bottom: 15px!important;
+}
+.jconfirm-buttons .pmcookie-show-submit {float: right;}
+
+}
+
+.pmcookie-cookies-table {
+	background: white;
+	border-radius: 10px;
+	border: 1px #AAA solid;
+	bottom: 50px;
+	color: black;
+	font-size: 12px;
+	min-width: 300px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	position: fixed;
+	right: 50px;
+	z-index: 100;
+}
+
+.pmcookie-cookies-table ul {
+	margin-top: 10px;
+}
+
+.pmcookie-cookies-table i {
+	display: block;
+	margin-top: 5px;
+	font-size: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.pmcookie-cookies-table strong {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.pm-text-center {
+	text-align: center;
+}
+
+
+
+.pmcookie-cookies-table {
+	background: white;
+	border-radius: 10px;
+	border: 1px #AAA solid;
+	bottom: 50px;
+	color: black;
+	font-size: 12px;
+	min-width: 300px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	position: fixed;
+	right: 50px;
+	z-index: 100;
+}
+
+.pmcookie-cookies-table ul {
+	margin-top: 10px;
+}
+
+.pmcookie-cookies-table i {
+	display: block;
+	margin-top: 5px;
+	font-size: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.pmcookie-cookies-table strong {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.pm-text-center {
+	text-align: center;
+}
+
+#my-account .material-icons {
+	font-size: 17px;
+}

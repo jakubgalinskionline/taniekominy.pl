@@ -1,0 +1,13 @@
+.pm-submit-color {background-color: #A359D4; color: #FFFFFF; }
+.pm-submit-color:hover {background-color: #A359FF; color: #FFFFFF; }
+.pm-show-more-color {background-color: #dddddd; color: #444444; }
+.pm-show-more-color:hover {background-color: #d1d1d1; color: #444444; }
+.pm-check-all-color {background-color: #eeeeee; color: #444444; }
+.pm-check-all-color:hover {background-color: #dddddd; color: #444444; }
+.pm-submit-selected {background-color: #dddddd; color: #444444; }
+.pm-submit-selected:hover {background-color: #d1d1d1; color: #444444; }
+.pm-submit-required {background-color: #DDDDDD; color: #000000; }
+.pm-submit-required:hover {background-color: #DDDDDD; color: #000000; }
+
+#pmcookie .pm-slider.checked { background-color: #7FAD28; }
+#pmcookie .pm-switch-toogle:hover .pm-slider:not(.checked) {opacity: 0.7; background-color: #8EBA3D;}
