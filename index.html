@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,9 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       /* RESET I BAZA */
@@ -43,8 +45,8 @@
         padding: 0 15px;
       }
 
-      /* TOP INFO */
-      .top-info {
+      /* TOP INFO CAROUSEL */
+      .top-info-carousel {
         background-color: var(--purple-main);
         color: white;
         text-align: center;
@@ -52,14 +54,36 @@
         font-size: 14px;
         font-weight: 600;
         text-transform: uppercase;
+        overflow: hidden;
+        position: relative;
+        min-height: 40px;
       }
-      .top-info span {
+      .top-info-track {
+        display: flex;
+        transition: transform 0.8s ease-in-out;
+        width: 300%;
+      }
+      .top-info-slide {
+        width: 33.3333%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 0 20px;
+      }
+      .top-info-slide a.btn-round-top {
         background: #9b59b6;
         padding: 4px 12px;
         border-radius: 20px;
-        margin-left: 10px;
         font-size: 11px;
         cursor: pointer;
+        color: white;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .top-info-slide a.btn-round-top:hover {
+        background: #7d3f94;
       }
 
       /* HEADER */
@@ -70,7 +94,7 @@
         padding: 20px 0;
       }
       .logo img {
-        height: 70px;
+        height: auto;
         width: auto;
       }
       .nav-top ul {
@@ -153,190 +177,148 @@
         gap: 0;
       }
 
-      /* PEŁNE MENU BOCZNE (STYLIZACJA TWOJEGO KODU) */
+      /* ============================================
+         SIDEBAR MENU - NOWOCZESNY STYL FIOLETOWY
+         ============================================ */
       .sidebar-menu {
         width: 300px;
         flex-shrink: 0;
         background: #fff;
-        border-right: 1px solid #eee;
+        box-shadow: 2px 0 12px rgba(102, 45, 145, 0.08);
         max-height: 600px;
         overflow-y: auto;
+        border-radius: 0 0 4px 0;
       }
 
       /* Scrollbar dla menu */
       .sidebar-menu::-webkit-scrollbar {
-        width: 8px;
+        width: 5px;
       }
       .sidebar-menu::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: #f3eef8;
       }
       .sidebar-menu::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
+        background: var(--purple-main);
+        border-radius: 10px;
       }
       .sidebar-menu::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: var(--purple-dark);
       }
 
-      /* Poziom 0 - Główne fioletowe belki */
-      .level-0 > a {
-        background-color: var(--purple-main);
-        color: white;
-        padding: 15px 20px;
-        font-size: 13px;
-        font-weight: 600;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      /* ---- POZIOM 0 - główne fioletowe belki ---- */
+      .level-0 {
         position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      }
+      .level-0 > a {
+        background: linear-gradient(90deg, var(--purple-main) 0%, #7b35a8 100%);
+        color: #fff;
+        padding: 13px 45px 13px 18px;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        display: block;
+        transition:
+          background 0.22s ease,
+          padding-left 0.18s ease;
+        position: relative;
       }
       .level-0:hover > a {
-        background-color: var(--purple-dark);
+        background: linear-gradient(90deg, var(--purple-dark) 0%, #5c237f 100%);
+        padding-left: 22px;
+      }
+      .level-0:last-child > a {
+        border-bottom: none;
       }
 
-      /* Strzałki rozwijania */
-      .navbar-toggler,
-      .arrows {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: #fff;
-        font-size: 18px;
-        z-index: 5;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .navbar-toggler:hover,
-      .arrows:hover {
-        background: rgba(0,0,0,0.1);
-        border-radius: 4px;
-      }
-      .navbar-toggler .fa-caret-down,
-      .arrows .fa-caret-down {
-        display: none;
-      }
-      .level-0 .arrows {
-        color: #fff;
-      }
-      .level-1 .arrows,
-      .level-2 .arrows,
-      .level-3 .arrows,
-      .level-4 .arrows {
-        color: #999;
-      }
+      /* Menu zawsze rozwinięte - bez collapse, bez strzałek */
 
-      /* Podmenu - ukryte domyślnie */
-      .collapse {
-        display: none;
+      /* ---- PODMENU (POZIOM 1+) ---- */
+      .category-sub-menu {
+        background: #fdfbff;
+        border-top: 1px solid #ede5f7;
       }
-      .collapse.in {
-        display: block;
-      }
-      
-      /* Ikony - stan początkowy - domyślnie strzałka w prawo */
-      .arrows .fa-caret-right,
-      .navbar-toggler .fa-caret-right {
-        display: inline-block;
-      }
-      .arrows .fa-caret-down,
-      .navbar-toggler .fa-caret-down {
-        display: none;
-      }
-      /* Gdy element ma klasę in lub aria-expanded="true" - strzałka w dół */
-      .arrows.in .fa-caret-right,
-      .navbar-toggler.in .fa-caret-right {
-        display: none;
-      }
-      .arrows.in .fa-caret-down,
-      .navbar-toggler.in .fa-caret-down {
-        display: inline-block;
-      }
-
-      /* Poziomy zagłębienia - białe tło dla podmenu */
-      .level-1 > a,
-      .level-2 > a,
-      .level-3 > a,
-      .level-4 > a {
-        background: #fff;
-        color: #555;
-      }
-      .level-1:hover > a,
-      .level-2:hover > a,
-      .level-3:hover > a,
-      .level-4:hover > a {
-        background: #f8f8f8;
-        color: #662d91;
-      }
-      .level-1 > a {
-        padding-left: 25px;
-      }
-      .level-2 > a {
-        padding-left: 35px;
-      }
-      .level-3 > a {
-        padding-left: 45px;
-      }
-      .level-4 > a {
-        padding-left: 55px;
-      }
-      .category-sub-menu li a:hover {
-        color: var(--purple-main);
-        background: #fafafa;
-      }
-
-      /* Dodaj bullet point przed linkami */
-      .category-sub-menu li > a::before {
-        content: "•";
-        position: absolute;
-        left: 8px;
-        color: #999;
-        font-size: 14px;
-      }
-
-      /* Strzałki dla poziomu 1-4 */
       .category-sub-menu li {
         position: relative;
+        border-bottom: 1px solid #f3edf9;
+      }
+      .category-sub-menu li:last-child {
+        border-bottom: none;
       }
 
-      .category-sub-menu .arrows {
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        color: #999;
-        font-size: 16px;
-        font-weight: normal;
-      }
-
-      /* Wcięcia dla poziomów - zwiększone aby pomieścić bullet */
       .level-1 > a {
-        padding-left: 25px;
+        display: block;
+        padding: 10px 45px 10px 26px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #444;
+        letter-spacing: 0.2px;
+        border-left: 3px solid var(--purple-main);
+        background: #fdfbff;
+        transition:
+          background 0.18s,
+          color 0.18s,
+          border-color 0.18s,
+          padding-left 0.15s;
       }
-      .level-2 > a {
-        padding-left: 35px;
-      }
-      .level-3 > a {
-        padding-left: 45px;
-      }
-      .level-4 > a {
-        padding-left: 55px;
+      .level-1:hover > a {
+        background: #f4edfc;
+        color: var(--purple-main);
+        border-left-color: #9b59b6;
+        padding-left: 30px;
       }
 
-      /* Kolory strzałek wewnątrz menu */
-      .arrows {
-        cursor: pointer;
-        user-select: none;
+      .level-2 > a {
+        display: block;
+        padding: 9px 45px 9px 38px;
+        font-size: 11.5px;
+        font-weight: 500;
+        color: #666;
+        border-left: 2px solid #c9a8e8;
+        background: #faf6ff;
+        transition:
+          background 0.18s,
+          color 0.18s,
+          border-color 0.18s,
+          padding-left 0.15s;
       }
-      .level-0 .navbar-toggler {
-        color: #fff;
+      .level-2:hover > a {
+        background: #efe6fb;
+        color: var(--purple-main);
+        border-left-color: var(--purple-main);
+        padding-left: 42px;
       }
-      .level-0 .arrows {
-        color: #fff;
+
+      .level-3 > a {
+        display: block;
+        padding: 8px 40px 8px 48px;
+        font-size: 11px;
+        color: #888;
+        border-left: 2px solid #e0cff4;
+        background: #f8f4ff;
+        transition:
+          background 0.18s,
+          color 0.18s;
+      }
+      .level-3:hover > a {
+        background: #ede1fa;
+        color: var(--purple-dark);
+      }
+
+      .level-4 > a {
+        display: block;
+        padding: 7px 40px 7px 58px;
+        font-size: 11px;
+        color: #aaa;
+        background: #f5f0ff;
+        transition:
+          background 0.18s,
+          color 0.18s;
+      }
+      .level-4:hover > a {
+        background: #e8dafc;
+        color: var(--purple-dark);
       }
 
       /* SLAJDER - KONTENER DLA DOSTARCZONEGO KODU */
@@ -387,8 +369,18 @@
     </style>
   </head>
   <body>
-    <div class="top-info">
-      POSIADAMY NAJTAŃSZE W POLSCE WKŁADY OWALNE! <span>SPRAWDŹ!</span>
+    <div class="top-info-carousel">
+      <div class="top-info-track" id="topInfoTrack">
+        <div class="top-info-slide">
+          POSIADAMY NAJTAŃSZE W POLSCE WKŁADY OWALNE! <a class="btn-round-top" href="https://taniekominy.pl/2369-owalne-wklady-kominowe">SPRAWDŹ!</a>
+        </div>
+        <div class="top-info-slide">
+          darmowa dostawa od 2000 zł <a class="btn-round-top" href="https://taniekominy.pl/dostawa">SZCZEGÓŁY!</a>
+        </div>
+        <div class="top-info-slide">
+          Najlepsze ceny w Polsce - gwarancja jakości <a class="btn-round-top" href="https://taniekominy.pl/kontakt">KONTAKT!</a>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -400,93 +392,80 @@
         </div>
         <nav class="nav-top">
           <ul>
-            <li>OFERTA</li>
-            <li>KONTAKT</li>
-            <li>INFORMACJE</li>
-            <li>O FIRMIE</li>
-            <li>PRODUCENCI</li>
-            <li>BLOG</li>
+            <li><a href="https://taniekominy.pl/2-oferta">OFERTA</a></li>
+            <li><a href="https://taniekominy.pl/kontakt">KONTAKT</a></li>
+            <li><a href="https://taniekominy.pl/informacje">INFORMACJE</a></li>
+            <li><a href="https://taniekominy.pl/o-firmie">O FIRMIE</a></li>
+            <li><a href="https://taniekominy.pl/producenci">PRODUCENCI</a></li>
+            <li><a href="https://taniekominy.pl/blog">BLOG</a></li>
           </ul>
         </nav>
       </header>
 
       <div class="search-bar-row">
         <div class="oferta-label">OFERTA <span>▼</span></div>
-        <div class="search-container">
-          <div class="search-box">
-            <select>
-              <option>Wszystkie kategorie</option>
-            </select>
-            <input type="text" placeholder="Wyszukaj" />
-            <button>🔍</button>
-          </div>
-        </div>
+        <div class="search-container"></div>
         <div class="infolinia">Infolinia: +48 531 11 11 88</div>
       </div>
 
       <section class="hero-section">
-        <!-- TWOJE PEŁNE MENU Z LINKAMI -->
         <aside class="sidebar-menu">
-          <div class="block-categories block block-highlighted hidden-sm-down">
-            <p class="title_block">
-              <a href="https://taniekominy.pl/2-oferta">Oferta</a>
-            </p>
-            <div class="block_content">
-              <ul class="category-top-menu">
-                <li data-depth="0" class="level-0">
-                  <a class="category-sub-link" href="https://taniekominy.pl/456-kominy-izolowane-na-pellet-drewno">KOMINY IZOLOWANE ZEWNĘTRZNE STALOWE-DWUŚCIENNE</a>
-                  <span class="arrows" data-toggle="collapse" data-target="#exCollapsingNavbar456" aria-expanded="true">
-                    <i class="fa fa-caret-right arrow-right"></i>
-                    <i class="fa fa-caret-down arrow-down"></i>
-                  </span>
-                  <div class="collapse in" id="exCollapsingNavbar456" aria-expanded="true" style="">
-                    <ul class="category-sub-menu">
-                      <li data-depth="1" class="level-1">
-                        <a class="category-sub-link" href="https://taniekominy.pl/457-gotowe-komplety">GOTOWE KOMPLETY</a>
-                      </li>
-                      <li data-depth="1" class="level-1">
-                        <a class="category-sub-link" href="https://taniekominy.pl/51-elementy-pojedyncze">ELEMENTY POJEDYNCZE</a>
-                      </li>
-                    </ul>
-                  </div>
+          <ul class="category-top-menu">
+            <li class="level-0">
+              <a
+                href="https://taniekominy.pl/456-kominy-izolowane-na-pellet-drewno"
+                >KOMINY IZOLOWANE ZEWNĘTRZNE STALOWE-DWUŚCIENNE</a
+              >
+              <ul class="category-sub-menu">
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/457-gotowe-komplety"
+                    >GOTOWE KOMPLETY</a
+                  >
                 </li>
-                <li data-depth="0" class="level-0">
-                  <a class="category-sub-link" href="https://taniekominy.pl/2369-owalne-wklady-kominowe">WKŁADY KOMINOWE KWSO-ŻAROODPORNE OWALNE</a>
-                  <span class="arrows" data-toggle="collapse" data-target="#exCollapsingNavbar2369" aria-expanded="true">
-                    <i class="fa fa-caret-right arrow-right"></i>
-                    <i class="fa fa-caret-down arrow-down"></i>
-                  </span>
-                  <div class="collapse in" id="exCollapsingNavbar2369" aria-expanded="true" style="">
-                    <ul class="category-sub-menu">
-                      <li data-depth="1" class="level-1">
-                        <a class="category-sub-link" href="https://taniekominy.pl/1181-gotowe-komplety">GOTOWE KOMPLETY</a>
-                      </li>
-                      <li data-depth="1" class="level-1">
-                        <a class="category-sub-link" href="https://taniekominy.pl/51-elementy-pojedyncze">ELEMENTY POJEDYNCZE</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li data-depth="0" class="level-0">
-                  <a class="category-sub-link" href="https://taniekominy.pl/2370-okragle-wklady-kominowe">WKŁADY KOMINOWE KWSO-ŻAROODPORNE OKRĄGŁE</a>
-                  <span class="arrows" data-toggle="collapse" data-target="#exCollapsingNavbar2370" aria-expanded="true">
-                    <i class="fa fa-caret-right arrow-right"></i>
-                    <i class="fa fa-caret-down arrow-down"></i>
-                  </span>
-                  <div class="collapse in" id="exCollapsingNavbar2370" aria-expanded="true" style="">
-                    <ul class="category-sub-menu">
-                      <li data-depth="1" class="level-1">
-                        <a class="category-sub-link" href="https://taniekominy.pl/1182-gotowe-komplety">GOTOWE KOMPLETY</a>
-                      </li>
-                      <li data-depth="1" class="level-1">
-                        <a class="category-sub-link" href="https://taniekominy.pl/51-elementy-pojedyncze">ELEMENTY POJEDYNCZE</a>
-                      </li>
-                    </ul>
-                  </div>
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/51-elementy-pojedyncze"
+                    >ELEMENTY POJEDYNCZE</a
+                  >
                 </li>
               </ul>
-            </div>
-          </div>
+            </li>
+
+            <li class="level-0">
+              <a href="https://taniekominy.pl/2369-owalne-wklady-kominowe"
+                >WKŁADY KOMINOWE KWSO-ŻAROODPORNE OWALNE</a
+              >
+              <ul class="category-sub-menu">
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/1181-gotowe-komplety"
+                    >GOTOWE KOMPLETY</a
+                  >
+                </li>
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/51-elementy-pojedyncze"
+                    >ELEMENTY POJEDYNCZE</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="level-0">
+              <a href="https://taniekominy.pl/2370-okragle-wklady-kominowe"
+                >WKŁADY KOMINOWE KWSO-ŻAROODPORNE OKRĄGŁE</a
+              >
+              <ul class="category-sub-menu">
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/1182-gotowe-komplety"
+                    >GOTOWE KOMPLETY</a
+                  >
+                </li>
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/51-elementy-pojedyncze"
+                    >ELEMENTY POJEDYNCZE</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
         </aside>
 
         <!-- DOSTARCZONY KOD SLAJDERA -->
@@ -565,32 +544,7 @@
     </div>
 
     <script>
-      // LOGIKA MENU
-      function toggleMenu(btn) {
-        const nextEl = btn.nextElementSibling;
-        const isOpen = nextEl.classList.contains("in");
-
-        // Zamknij rodzeństwo na tym samym poziomie
-        const parent = btn.parentElement.parentElement;
-        parent
-          .querySelectorAll(":scope > li > .collapse, :scope > .collapse")
-          .forEach((el) => el.classList.remove("in"));
-        parent
-          .querySelectorAll(
-            ":scope > li > .navbar-toggler, :scope > li > .arrows",
-          )
-          .forEach((el) => (el.innerText = "+"));
-
-        if (!isOpen) {
-          nextEl.classList.add("in");
-          btn.innerText = "-";
-        } else {
-          nextEl.classList.remove("in");
-          btn.innerText = "+";
-        }
-      }
-
-      // LOGIKA SLAJDERA
+      // LOGIKA SLAJDERA (obrazkowego)
       let cur = 0;
       const s_configs = document.querySelectorAll(".slide_config");
       const s_dots = document.querySelectorAll(".dot");
@@ -611,49 +565,20 @@
         cur = (cur + 1) % s_configs.length;
         jumpTo(cur);
       }, 5000);
-    </script>
-    <script>
-      $(document).ready(function() {
-        // Ukryj domyślnie wszystkie podmenu (oprócz tych z klasą in)
-        $('.collapse').each(function() {
-          if (!$(this).hasClass('in')) {
-            $(this).css('display', 'none');
-          } else {
-            // Jeśli ma klasę in, dodaj ją też do przycisku
-            var $btn = $(this).prev('.arrows, .navbar-toggler');
-            $btn.addClass('in').attr('aria-expanded', 'true');
-            $btn.find('.fa-caret-right').hide();
-            $btn.find('.fa-caret-down').show();
-          }
-        });
-        
-        // Obsługa kliknięcia w strzałkę
-        $(document).on('click', '.arrows, .navbar-toggler', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          var $btn = $(this);
-          var targetId = $btn.data('target');
-          var $target = $(targetId);
-          
-          if (!$target.length) return;
-          
-          // Toggle stan
-          if ($target.css('display') === 'none') {
-            $target.slideDown(200).addClass('in');
-            $btn.addClass('in').attr('aria-expanded', 'true');
-            $btn.find('.fa-caret-right').hide();
-            $btn.find('.fa-caret-down').show();
-          } else {
-            $target.slideUp(200, function() {
-              $(this).removeClass('in');
-            });
-            $btn.removeClass('in').attr('aria-expanded', 'false');
-            $btn.find('.fa-caret-right').show();
-            $btn.find('.fa-caret-down').hide();
-          }
-        });
-      });
+
+      // LOGIKA GÓRNEJ KARUZELI TEKSTOWEJ
+      (function() {
+        const track = document.getElementById('topInfoTrack');
+        const totalSlides = 3;
+        let topCur = 0;
+
+        function slideTop() {
+          topCur = (topCur + 1) % totalSlides;
+          track.style.transform = 'translateX(-' + (topCur * (100 / totalSlides)) + '%)';
+        }
+
+        setInterval(slideTop, 4000);
+      })();
     </script>
   </body>
 </html>
