@@ -366,6 +366,82 @@
       .dot.active {
         background-color: var(--purple-main);
       }
+
+      /* FOOTER */
+      .footer {
+        background: #522570;
+        color: #fff;
+        padding: 40px 0 0;
+        margin-top: 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      .footer-col h4 {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        color: #fff;
+      }
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-col ul li {
+        margin-bottom: 8px;
+        font-size: 13px;
+      }
+      .footer-col ul li a {
+        color: #ddd;
+        transition: color 0.2s;
+      }
+      .footer-col ul li a:hover {
+        color: #fff;
+      }
+      .footer-contact-info ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-contact-info li {
+        margin-bottom: 12px;
+        font-size: 13px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .footer-contact-info li i {
+        margin-top: 3px;
+      }
+      .footer-contact-info .phone-num {
+        font-weight: 700;
+        color: #fff;
+      }
+      .footer-bottom {
+        background: #3d1a52;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 30px;
+        font-size: 12px;
+      }
+      .footer-bottom a {
+        color: #bbb;
+      }
+      @media (max-width: 992px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 576px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
@@ -542,6 +618,50 @@
         </div>
       </section>
     </div>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col footer-contact-info">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><i class="fa fa-phone"></i> <a href="tel:+48531111188" class="phone-num">531 11 11 88</a></li>
+            <li><i class="fa fa-home"></i> TANIEKOMINY.PL<br>ul. Kwiatowa 21<br>78-600 Wałcz</li>
+            <li><i class="fa fa-envelope"></i> <a href="mailto:biuro@taniekominy.pl">biuro@taniekominy.pl</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Strefa klienta</h4>
+          <ul>
+            <li><a href="https://taniekominy.pl/kontakt">Kontakt</a></li>
+            <li><a href="https://taniekominy.pl/moje-konto">Moje konto</a></li>
+            <li><a href="https://taniekominy.pl/metody-platnosci-12">Metody płatności</a></li>
+            <li><a href="https://taniekominy.pl/wysylka-10">Koszty dostawy</a></li>
+            <li><a href="https://taniekominy.pl/zwroty-11">Zwroty i wymiany</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Dane firmowe</h4>
+          <ul>
+            <li><a href="https://taniekominy.pl/o-firmie-13">O firmie</a></li>
+            <li><a href="https://taniekominy.pl/regulamin-18">Regulamin sklepu</a></li>
+            <li><a href="https://taniekominy.pl/polityka-prywatnosci-19">Polityka prywatności</a></li>
+            <li><a href="https://taniekominy.pl/polityka-cookies-20">Polityka Cookies</a></li>
+            <li><a href="https://taniekominy.pl/mapa-strony">Mapa strony</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="font-size: 13px; margin-bottom: 15px;">Zapisz się do newslettera i otrzymuj najnowsze oferty!</p>
+          <form style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input type="email" placeholder="Twój email..." style="flex:1; min-width:150px; padding:8px 12px; border:none; border-radius:4px;">
+            <button type="submit" style="background:#9b59b6; color:#fff; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">OK</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Copyright © 2026 Projekt i realizacja <a href="https://wenet.pl/oferta/sklepy-internetowe" target="_blank">WeNet Group S.A.</a>
+      </div>
+    </footer>
 
     <script>
       // LOGIKA SLAJDERA (obrazkowego)
