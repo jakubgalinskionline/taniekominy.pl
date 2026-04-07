@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanieKominy.pl - Projekt Gotowy</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      /* RESET I BAZA */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #fff;
+        color: #333;
+        overflow-x: hidden;
+      }
+      ul {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      :root {
+        --purple-main: #662d91;
+        --purple-dark: #4d206d;
+        --gray-light: #f8f8f8;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* TOP INFO CAROUSEL */
+      .top-info-carousel {
+        background-color: var(--purple-main);
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        overflow: hidden;
+        position: relative;
+        min-height: 40px;
+      }
+      .top-info-track {
+        display: flex;
+        transition: transform 0.8s ease-in-out;
+        width: 300%;
+      }
+      .top-info-slide {
+        width: 33.3333%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 0 20px;
+      }
+      .top-info-slide a.btn-round-top {
+        background: #9b59b6;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        cursor: pointer;
+        color: white;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .top-info-slide a.btn-round-top:hover {
+        background: #7d3f94;
+      }
+
+      /* HEADER */
+      .header-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+      .logo img {
+        height: auto;
+        width: auto;
+      }
+      .nav-top ul {
+        display: flex;
+        gap: 20px;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+
+      /* PASEK WYSZUKIWARKI */
+      .search-bar-row {
+        background-color: var(--purple-main);
+        display: flex;
+        height: 50px;
+        align-items: stretch;
+        margin-bottom: 2px;
+      }
+      .oferta-label {
+        background-color: var(--purple-dark);
+        color: white;
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+      .search-container {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+      }
+      .search-box {
+        background: white;
+        display: flex;
+        border-radius: 25px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 500px;
+        height: 34px;
+      }
+      .search-box select {
+        border: none;
+        background: #eee;
+        padding: 0 10px;
+        font-size: 11px;
+        outline: none;
+      }
+      .search-box input {
+        border: none;
+        flex-grow: 1;
+        padding: 0 15px;
+        font-size: 13px;
+        outline: none;
+      }
+      .search-box button {
+        border: none;
+        background: #fff;
+        padding: 0 12px;
+        cursor: pointer;
+      }
+      .infolinia {
+        color: white;
+        display: flex;
+        align-items: center;
+        padding-right: 20px;
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      /* UKŁAD GŁÓWNY */
+      .hero-section {
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      /* ============================================
+         SIDEBAR MENU - NOWOCZESNY STYL FIOLETOWY
+         ============================================ */
+      .sidebar-menu {
+        width: 300px;
+        flex-shrink: 0;
+        background: #fff;
+        box-shadow: 2px 0 12px rgba(102, 45, 145, 0.08);
+        max-height: 600px;
+        overflow-y: auto;
+        border-radius: 0 0 4px 0;
+      }
+
+      /* Scrollbar dla menu */
+      .sidebar-menu::-webkit-scrollbar {
+        width: 5px;
+      }
+      .sidebar-menu::-webkit-scrollbar-track {
+        background: #f3eef8;
+      }
+      .sidebar-menu::-webkit-scrollbar-thumb {
+        background: var(--purple-main);
+        border-radius: 10px;
+      }
+      .sidebar-menu::-webkit-scrollbar-thumb:hover {
+        background: var(--purple-dark);
+      }
+
+      /* ---- POZIOM 0 - główne fioletowe belki ---- */
+      .level-0 {
+        position: relative;
+      }
+      .level-0 > a {
+        background: linear-gradient(90deg, var(--purple-main) 0%, #7b35a8 100%);
+        color: #fff;
+        padding: 13px 45px 13px 18px;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        display: block;
+        transition:
+          background 0.22s ease,
+          padding-left 0.18s ease;
+        position: relative;
+      }
+      .level-0:hover > a {
+        background: linear-gradient(90deg, var(--purple-dark) 0%, #5c237f 100%);
+        padding-left: 22px;
+      }
+      .level-0:last-child > a {
+        border-bottom: none;
+      }
+
+      /* Menu zawsze rozwinięte - bez collapse, bez strzałek */
+
+      /* ---- PODMENU (POZIOM 1+) ---- */
+      .category-sub-menu {
+        background: #fdfbff;
+        border-top: 1px solid #ede5f7;
+      }
+      .category-sub-menu li {
+        position: relative;
+        border-bottom: 1px solid #f3edf9;
+      }
+      .category-sub-menu li:last-child {
+        border-bottom: none;
+      }
+
+      .level-1 > a {
+        display: block;
+        padding: 10px 45px 10px 26px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #444;
+        letter-spacing: 0.2px;
+        border-left: 3px solid var(--purple-main);
+        background: #fdfbff;
+        transition:
+          background 0.18s,
+          color 0.18s,
+          border-color 0.18s,
+          padding-left 0.15s;
+      }
+      .level-1:hover > a {
+        background: #f4edfc;
+        color: var(--purple-main);
+        border-left-color: #9b59b6;
+        padding-left: 30px;
+      }
+
+      .level-2 > a {
+        display: block;
+        padding: 9px 45px 9px 38px;
+        font-size: 11.5px;
+        font-weight: 500;
+        color: #666;
+        border-left: 2px solid #c9a8e8;
+        background: #faf6ff;
+        transition:
+          background 0.18s,
+          color 0.18s,
+          border-color 0.18s,
+          padding-left 0.15s;
+      }
+      .level-2:hover > a {
+        background: #efe6fb;
+        color: var(--purple-main);
+        border-left-color: var(--purple-main);
+        padding-left: 42px;
+      }
+
+      .level-3 > a {
+        display: block;
+        padding: 8px 40px 8px 48px;
+        font-size: 11px;
+        color: #888;
+        border-left: 2px solid #e0cff4;
+        background: #f8f4ff;
+        transition:
+          background 0.18s,
+          color 0.18s;
+      }
+      .level-3:hover > a {
+        background: #ede1fa;
+        color: var(--purple-dark);
+      }
+
+      .level-4 > a {
+        display: block;
+        padding: 7px 40px 7px 58px;
+        font-size: 11px;
+        color: #aaa;
+        background: #f5f0ff;
+        transition:
+          background 0.18s,
+          color 0.18s;
+      }
+      .level-4:hover > a {
+        background: #e8dafc;
+        color: var(--purple-dark);
+      }
+
+      /* SLAJDER - KONTENER DLA DOSTARCZONEGO KODU */
+      .slider-wrap {
+        flex-grow: 1;
+        height: 425px; /* Wysokość po przeskalowaniu 575px * 0.74 */
+        overflow: hidden;
+        position: relative;
+      }
+
+      .iviewSlider {
+        background-size: 100% 100% !important;
+        transition: background 0.4s ease-in-out;
+      }
+
+      .tp-caption {
+        position: absolute;
+        pointer-events: none;
+      }
+      .slider-text p {
+        margin: 0;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+
+      /* KROPKI IDENTYCZNE ZE STRONĄ */
+      .slider-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 100;
+      }
+      .dot {
+        width: 9px;
+        height: 9px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        transition: 0.3s;
+      }
+      .dot.active {
+        background-color: var(--purple-main);
+      }
+
+      /* FOOTER */
+      .footer {
+        background: #522570;
+        color: #fff;
+        padding: 40px 0 0;
+        margin-top: 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      .footer-col h4 {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        color: #fff;
+      }
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-col ul li {
+        margin-bottom: 8px;
+        font-size: 13px;
+      }
+      .footer-col ul li a {
+        color: #ddd;
+        transition: color 0.2s;
+      }
+      .footer-col ul li a:hover {
+        color: #fff;
+      }
+      .footer-contact-info ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-contact-info li {
+        margin-bottom: 12px;
+        font-size: 13px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .footer-contact-info li i {
+        margin-top: 3px;
+      }
+      .footer-contact-info .phone-num {
+        font-weight: 700;
+        color: #fff;
+      }
+      .footer-bottom {
+        background: #3d1a52;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 30px;
+        font-size: 12px;
+      }
+      .footer-bottom a {
+        color: #bbb;
+      }
+      @media (max-width: 992px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 576px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-info-carousel">
+      <div class="top-info-track" id="topInfoTrack">
+        <div class="top-info-slide">
+          POSIADAMY NAJTAŃSZE W POLSCE WKŁADY OWALNE!
+          <a
+            class="btn-round-top"
+            href="https://taniekominy.pl/2369-owalne-wklady-kominowe"
+            >SPRAWDŹ!</a
+          >
+        </div>
+        <div class="top-info-slide">
+          darmowa dostawa od 2000 zł
+          <a class="btn-round-top" href="https://taniekominy.pl/dostawa"
+            >SZCZEGÓŁY!</a
+          >
+        </div>
+        <div class="top-info-slide">
+          Najlepsze ceny w Polsce - gwarancja jakości
+          <a class="btn-round-top" href="https://taniekominy.pl/kontakt"
+            >KONTAKT!</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <header class="header-main">
+        <div class="logo">
+          <img
+            src="https://taniekominy.pl/img/tanie-kominy-logo-1623828114.jpg"
+            alt="Logo" />
+        </div>
+        <nav class="nav-top">
+          <ul>
+            <li><a href="https://taniekominy.pl/2-oferta">OFERTA</a></li>
+            <li><a href="https://taniekominy.pl/2-oferta">KONTAKT</a></li>
+            <li><a href="https://taniekominy.pl/2-oferta">INFORMACJE</a></li>
+            <li><a href="https://taniekominy.pl/2-oferta">O FIRMIE</a></li>
+            <li><a href="https://taniekominy.pl/2-oferta">PRODUCENCI</a></li>
+            <li><a href="https://taniekominy.pl/2-oferta">BLOG</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="search-bar-row">
+        <div class="oferta-label">OFERTA <span>▼</span></div>
+        <div class="search-container"></div>
+        <div class="infolinia">Infolinia: +48 531 11 11 88</div>
+      </div>
+
+      <section class="hero-section">
+        <aside class="sidebar-menu">
+          <ul class="category-top-menu">
+            <li class="level-0">
+              <a
+                href="https://taniekominy.pl/456-kominy-izolowane-na-pellet-drewno"
+                >KOMINY IZOLOWANE ZEWNĘTRZNE STALOWE - DWUŚCIENNE</a
+              >
+              <ul class="category-sub-menu">
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/457-gotowe-komplet"
+                    >GOTOWE KOMPLETY</a
+                  >
+                </li>
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/152-elementy-pojedyncze"
+                    >ELEMENTY POJEDYNCZE</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="level-0">
+              <a href="https://taniekominy.pl/2369-owalne-wklady-kominowe"
+                >WKŁADY KOMINOWE KWASO-ŻAROODPORNE OWALNE</a
+              >
+              <ul class="category-sub-menu">
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/1181-gotowe-komplety"
+                    >GOTOWE KOMPLETY</a
+                  >
+                </li>
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/51-elementy-pojedyncze"
+                    >ELEMENTY POJEDYNCZE</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="level-0">
+              <a href="https://taniekominy.pl/2370-okragle-wklady-kominowe"
+                >WKŁADY KOMINOWE KWASO-ŻAROODPORNE OKRĄGŁE</a
+              >
+              <ul class="category-sub-menu">
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/1997-gotowe-komplety"
+                    >GOTOWE KOMPLETY</a
+                  >
+                </li>
+                <li class="level-1">
+                  <a href="https://taniekominy.pl/52-elementy-pojedyncze"
+                    >ELEMENTY POJEDYNCZE</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- DOSTARCZONY KOD SLAJDERA -->
+        <div class="slider-wrap">
+          <div
+            id="ivSlider"
+            class="iviewSlider"
+            style="
+              position: relative;
+              height: 575px;
+              width: 1400px;
+              transform-origin: 0px 0px;
+              transform: scale(0.739286);
+              background: url(&quot;https://taniekominy.pl/themes/leo_clark/assets/img/modules/leoslideshow/img-slider-s.jpg&quot;)
+                0% 0% / 100% no-repeat;
+            ">
+            <!-- SLIDE 1 -->
+            <div
+              class="slide_config"
+              data-leo_image="https://taniekominy.pl/themes/leo_clark/assets/img/modules/leoslideshow/img-slider-s.jpg"
+              style="display: block">
+              <div
+                class="tp-caption"
+                style="font-size: 40px; color: #000; top: 265px; left: 190px">
+                <div class="slider-text">
+                  <p>KOMINY KWASO-ŻAROODPORNE</p>
+                  <p style="font-size: 28px; font-weight: 400">
+                    SYSTEMY Z IZOLACJĄ TERMICZNĄ<br />I PŁASZCZEM ZEWNĘTRZNYM
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div
+              class="slide_config"
+              data-leo_image="https://taniekominy.pl/themes/leo_clark/assets/img/modules/leoslideshow/img-slider-1-s.jpg"
+              style="display: none">
+              <div
+                class="tp-caption"
+                style="font-size: 40px; color: #000; top: 265px; left: 190px">
+                <div class="slider-text">
+                  <p>NOWOCZESNE WKŁADY POWIETRZNE</p>
+                  <p style="font-size: 28px; font-weight: 400">
+                    EKONOMICZNE SPALANIE DREWNA
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div
+              class="slide_config"
+              data-leo_image="https://taniekominy.pl/themes/leo_clark/assets/img/modules/leoslideshow/img-slider-2-s.jpg"
+              style="display: none">
+              <div
+                class="tp-caption"
+                style="font-size: 40px; color: #000; top: 265px; left: 190px">
+                <div class="slider-text">
+                  <p>WKŁADY Z PŁASZCZEM WODNYM</p>
+                  <p style="font-size: 28px; font-weight: 400">
+                    PRZYTULNY KLIMAT,<br />EFEKTOWNE WYKORZYSTANIE CIEPŁA
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-dots">
+              <div class="dot active" onclick="jumpTo(0)"></div>
+              <div class="dot" onclick="jumpTo(1)"></div>
+              <div class="dot" onclick="jumpTo(2)"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col footer-contact-info">
+          <h4>Kontakt</h4>
+          <ul>
+            <li>
+              <i class="fa fa-phone"></i>
+              <a href="tel:+48531111188" class="phone-num">531 11 11 88</a>
+            </li>
+            <li>
+              <i class="fa fa-home"></i> TANIEKOMINY.PL<br />ul. Kwiatowa 21<br />78-600
+              Wałcz
+            </li>
+            <li>
+              <i class="fa fa-envelope"></i>
+              <a href="mailto:kominyizolowane@taniekominy.pl"
+                >kominyizolowane@taniekominy.pl</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Strefa klienta</h4>
+          <ul>
+            <li><a href="https://taniekominy.pl/kontakt">Kontakt</a></li>
+            <li><a href="https://taniekominy.pl/moje-konto">Moje konto</a></li>
+            <li>
+              <a href="https://taniekominy.pl/metody-platnosci-12"
+                >Metody płatności</a
+              >
+            </li>
+            <li>
+              <a href="https://taniekominy.pl/wysylka-10">Koszty dostawy</a>
+            </li>
+            <li>
+              <a href="https://taniekominy.pl/zwroty-11">Zwroty i wymiany</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Dane firmowe</h4>
+          <ul>
+            <li><a href="https://taniekominy.pl/o-firmie-13">O firmie</a></li>
+            <li>
+              <a href="https://taniekominy.pl/regulamin-18">Regulamin sklepu</a>
+            </li>
+            <li>
+              <a href="https://taniekominy.pl/polityka-prywatnosci-19"
+                >Polityka prywatności</a
+              >
+            </li>
+            <li>
+              <a href="https://taniekominy.pl/polityka-cookies-20"
+                >Polityka Cookies</a
+              >
+            </li>
+            <li>
+              <a href="https://taniekominy.pl/mapa-strony">Mapa strony</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="font-size: 13px; margin-bottom: 15px">
+            Zapisz się do newslettera i otrzymuj najnowsze oferty!
+          </p>
+          <form style="display: flex; gap: 8px; flex-wrap: wrap">
+            <input
+              type="email"
+              placeholder="Twój email..."
+              style="
+                flex: 1;
+                min-width: 150px;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+              " />
+            <button
+              type="submit"
+              style="
+                background: #9b59b6;
+                color: #fff;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+              ">
+              OK
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Copyright © 2026
+        <a href="https://taniekominy.pl" target="_blank">taniekominy.pl</a>
+      </div>
+    </footer>
+
+    <script>
+      // LOGIKA SLAJDERA (obrazkowego)
+      let cur = 0;
+      const s_configs = document.querySelectorAll(".slide_config");
+      const s_dots = document.querySelectorAll(".dot");
+      const s_iview = document.getElementById("ivSlider");
+
+      function jumpTo(idx) {
+        cur = idx;
+        const img = s_configs[idx].getAttribute("data-leo_image");
+        s_iview.style.background = `url('${img}') 0% 0% / 100% no-repeat`;
+
+        s_configs.forEach((s, i) => {
+          s.style.display = i === idx ? "block" : "none";
+          s_dots[i].classList.toggle("active", i === idx);
+        });
+      }
+
+      setInterval(() => {
+        cur = (cur + 1) % s_configs.length;
+        jumpTo(cur);
+      }, 5000);
+
+      // LOGIKA GÓRNEJ KARUZELI TEKSTOWEJ
+      (function () {
+        const track = document.getElementById("topInfoTrack");
+        const totalSlides = 3;
+        let topCur = 0;
+
+        function slideTop() {
+          topCur = (topCur + 1) % totalSlides;
+          track.style.transform =
+            "translateX(-" + topCur * (100 / totalSlides) + "%)";
+        }
+
+        setInterval(slideTop, 4000);
+      })();
+    </script>
+  </body>
+</html>
